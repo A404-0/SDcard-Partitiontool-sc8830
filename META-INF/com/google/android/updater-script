@@ -1,0 +1,16 @@
+ui_print("***************************************");
+ui_print("*      SD Card Partition Tool         *");
+ui_print("***************************************");
+
+ui_print("- Extracting script...");
+package_extract_file("script/partition.sh", "/tmp/partition.sh");
+
+ui_print("- Setting permissions...");
+set_metadata("/tmp/partition.sh", "uid", 0, "gid", 0, "mode", 0755);
+
+ui_print("- Running partition script...");
+ui_print("- This may take a few seconds.");
+run_program("/sbin/sh", "/tmp/partition.sh");
+
+ui_print("- Partitioning complete!");
+ui_print("***************************************");

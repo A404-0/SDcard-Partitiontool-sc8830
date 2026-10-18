@@ -1,0 +1,5 @@
+ota-required-cache=0
+ota-type=BLOCK
+post-build=samsung/lineage_klte/klte:8.1.0/OPM2.171026.006.C1/9e2cc64dba:userdebug/test-keys
+post-timestamp=1530662629
+pre-device=klte
