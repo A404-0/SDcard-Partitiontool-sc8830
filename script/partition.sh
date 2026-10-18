@@ -42,6 +42,18 @@ fi
 echo "Unmounting SD card partitions if mounted..."
 umount ${SDCARD}* 2>/dev/null
 
+echo "=== FACTORY RESET PHASE ==="
+echo "Wiping all partition tables, signatures, and old data..."
+
+dd if=/dev/zero of=$SDCARD bs=1M count=32 2>/dev/null
+
+if command -v sgdisk >/dev/null 2>&1; then
+    sgdisk --zap-all $SDCARD
+fi
+
+partprobe $SDCARD 2>/dev/null || blockdev --rereadpt $SDCARD 2>/dev/null || sync
+sleep 2
+
 echo "Partitioning the SD card (GPT)..."
 
 sgdisk --zap-all $SDCARD
