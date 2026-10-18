@@ -44,7 +44,6 @@ umount ${SDCARD}* 2>/dev/null
 
 echo "Partitioning the SD card (GPT)..."
 
-# Строгая GPT разметка
 sgdisk --zap-all $SDCARD
 sgdisk --new=1:0:$SIZE_SYSTEM --change-name=1:ext_system $SDCARD
 sgdisk --new=2:0:$SIZE_DATA --change-name=2:ext_data $SDCARD
